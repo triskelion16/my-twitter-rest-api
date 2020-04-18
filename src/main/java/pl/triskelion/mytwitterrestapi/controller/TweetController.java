@@ -28,6 +28,11 @@ public class TweetController {
         tweets.add(tweet);
     }
 
+    @DeleteMapping("/{id}")
+    public void deleteTweet(@PathVariable long id) {
+        tweets.removeIf(tweet -> tweet.getId() == id);
+    }
+
     private Optional<Tweet> findTweetById(long id) {
         return tweets.stream().filter(tweet -> tweet.getId() == id).findAny();
     }

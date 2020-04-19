@@ -2,9 +2,9 @@ package pl.triskelion.mytwitterrestapi.controller;
 
 import org.springframework.web.bind.annotation.*;
 import pl.triskelion.mytwitterrestapi.domain.Tweet;
+import pl.triskelion.mytwitterrestapi.util.ExampleData;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Optional;
 import java.util.stream.Stream;
 
@@ -12,7 +12,7 @@ import java.util.stream.Stream;
 @RequestMapping("/api/tweets")
 public class TweetController {
 
-    private Collection<Tweet> tweets = new ArrayList<>();
+    private ArrayList<Tweet> tweets = ExampleData.initTweets();
 
     @GetMapping
     public Iterable<Tweet> getTweets() {

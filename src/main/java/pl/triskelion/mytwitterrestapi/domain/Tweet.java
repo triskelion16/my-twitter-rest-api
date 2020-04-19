@@ -9,6 +9,13 @@ public class Tweet {
     public Tweet() {
     }
 
+    public Tweet(long id, String title, String content, String author) {
+        this.id = id;
+        this.title = title;
+        this.content = content;
+        this.author = author;
+    }
+
     public long getId() {
         return id;
     }

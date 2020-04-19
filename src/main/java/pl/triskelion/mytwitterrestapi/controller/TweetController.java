@@ -39,6 +39,15 @@ public class TweetController {
         tweets.removeIf(tweet -> tweet.getId() == id);
     }
 
+    @PutMapping("/{id}")
+    public void replaceTweet(@PathVariable long id, @RequestBody Tweet newTweet) {
+        findTweetById(id).ifPresent(tweet -> {
+            tweet.setTitle(newTweet.getTitle());
+            tweet.setContent(newTweet.getContent());
+            tweet.setAuthor(newTweet.getAuthor());
+        });
+    }
+
     private Optional<Tweet> findTweetById(long id) {
         return tweets.stream().filter(tweet -> tweet.getId() == id).findAny();
     }

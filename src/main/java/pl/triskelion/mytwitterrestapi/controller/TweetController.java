@@ -6,6 +6,7 @@ import pl.triskelion.mytwitterrestapi.domain.Tweet;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 @RestController
 @RequestMapping("/api/tweets")
@@ -21,6 +22,11 @@ public class TweetController {
     @GetMapping("/{id}")
     public Optional<Tweet> getTweet(@PathVariable long id) {
         return findTweetById(id);
+    }
+
+    @GetMapping(params = "author")
+    public Stream<Tweet> findTweetsByAuthor(@RequestParam String author) {
+        return tweets.stream().filter(tweet -> author.equals(tweet.getAuthor()));
     }
 
     @PostMapping
